@@ -11,18 +11,18 @@ else: font_coding_scheme:=if ligs=0: "TeX typewriter text"
 
 mode_setup; font_setup;
 
-input romanu;  % upper case (majuscules)
-input romanl;  % lower case (minuscules)
-input greeku;  % upper case Greek letters
-input romand;  % numerals
-input romanp;  % ampersand, question marks, currency sign
-input romspl;  % lowercase specials (dotless \i, ligature \ae, etc.)
-input romspu;  % uppercase specials (\AE, \OE, \O)
-input punct;  % punctuation symbols common to roman and italic text
-input accent;  % accents common to roman and italic text
-if ligs>1: input romlig; fi  % letter ligatures
-if ligs>0: input comlig; fi  % ligatures common with italic text
-if ligs<=1: input romsub; fi  % substitutes for ligatures
+input characters/romanu;  % upper case (majuscules)
+input characters/romanl;  % lower case (minuscules)
+input characters/greeku;  % upper case Greek letters
+input characters/romand;  % numerals
+input characters/romanp;  % ampersand, question marks, currency sign
+input characters/romspl;  % lowercase specials (dotless \i, ligature \ae, etc.)
+input characters/romspu;  % uppercase specials (\AE, \OE, \O)
+input characters/punct;  % punctuation symbols common to roman and italic text
+input characters/accent;  % accents common to roman and italic text
+if ligs>1: input characters/romlig; fi  % letter ligatures
+if ligs>0: input characters/comlig; fi  % ligatures common with italic text
+if ligs<=1: input characters/romsub; fi  % substitutes for ligatures
 
 ligtable "!": "`" =: spanish_shriek;
 ligtable "?": "`" =: spanish_query;
