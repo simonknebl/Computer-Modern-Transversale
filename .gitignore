@@ -1,6 +1,19 @@
 ### METAFONT ###
-.2602gf
-.log
+*.2602gf
+*.4335gf
+*.log
+*.tfm
+*.500gf
+*.afm
+.mf-project
+
+### COMPILER ###
+METAFONT/lib/*
+METAFONT/lib/
+
+### SPECIMEN ###
+SPECIMEN/*
+SPECIMEN/
 
 ### Workflow & Editor ###
 .idea

@@ -115,8 +115,6 @@ if unknown l_width#:
  l_width#:=5u#+2serif_fit#; fi  % nominal width of `l'
 if unknown L_stem#:
  L_stem#:=cap_serif_fit#+max(2u#+.5cap_stem#,3u#); fi  % center of `L' stem
-ligtable oct"040": "l" kern -l_width#-2letter_fit#,
- "L" kern -.5l_width#-L_stem#-2letter_fit#;
 beginchar(oct"040",l_width#,x_height#,0);
 adjust_fit(stem_shift#,-stem_shift#);
 pickup crisp.nib; x2-x1=max(4u,2.8u+stem); .5[x1,x2]=.5w;

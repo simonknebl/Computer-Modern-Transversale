@@ -1,7 +1,20 @@
-% THIS IS THE OFFICIAL COMPUTER MODERN SOURCE FILE cmbase.mf BY D E KNUTH.
-% IT MUST NOT BE MODIFIED IN ANY WAY UNLESS THE FILE NAME IS CHANGED!
+%.            ____,____, __, _,____,_, _,____,____,____,                        
+%.           (-/  (-/  \(-|\/|(-|__|-|  (-|  (-|_,(-|__)                        
+%.            _\__,_\__/,_| _|,_|   _|__/_|,  _|__,_|  \,                       
+%.           (    (     (     (    (    (    (    (            
+%.                  
+%.               __, _,____, ____,____,____, _,  _,                                
+%.              (-|\/|(-/  \(-|  (-|_,(-|__)(-|\ |                                 
+%.               _| _|,_\__/,_|__/_|__,_|  \,_| \|,                                
+%.              (     (     (    (    (     (      
+%.                                 
+%.  ____,____,  ____,_,  _,____,__  _,____,____, ____,____,__,  ____, 
+%. (-|  (-|__) (-/_|(-|\ |(-(__(-\  /(-|_,(-|__)(-(__(-/_|(-|  (-|_,  
+%.  _|,  _|  \,_/  |,_| \|,____) _\/  _|__,_|  \,____)/  |,_|__,_|__, 
+%. (    (     (     (     (     (    (    (     (   (     (    (      
+%.
 
-% The base file for Computer Modern (a supplement to {\tt plain.mf})
+% The base file for Computer Modern Transversale (a supplement to {\tt plain.mf})
 
 cmbase:=1; % when |cmbase| is known, this file has been input
 
@@ -10,6 +23,8 @@ let generate=input; % `|generate|' should follow the parameters
 
 autorounding:=0; smoothing:=0; % we do our own rounding
 def autorounded = interim autorounding:=2 enddef;
+
+boolean production,italic;
 
 newinternal slant,fudge,math_spread,superness,superpull,beak_darkness,ligs;
 boolean square_dots,hefty,serifs,
@@ -27,10 +42,10 @@ vardef serif(suffix $,$$,@)  % serif at |z$| for stroke from |z$$|
  pickup crisp.nib; numeric bracket_height; pair downward;
  bracket_height=if dark.modifier: 1.5 fi\\ bracket;
  if y$<y$$: y@2=min(y$+bracket_height,y$$);
-  top y@1-slab=bot y@0+eps=tiny.bot y$; downward=z$-z$$;
+  top y@1-0.5slab=bot y@0+eps=tiny.bot y$; downward=z$-z$$;
   if y@1>y@2: y@2:=y@1; fi
  else: y@2=max(y$-bracket_height,y$$);
-  bot y@1+slab=top y@0-eps=tiny.top y$; downward=z$$-z$;
+  bot y@1+0.5slab=top y@0-eps=tiny.top y$; downward=z$$-z$;
   if y@1<y@2: y@2:=y@1; fi fi
  y@3=y@2; z@3=whatever[z$,z$$];
  if jut<0: z@2+penoffset downward of currentpen =
@@ -42,9 +57,7 @@ vardef serif(suffix $,$$,@)  % serif at |z$| for stroke from |z$$|
    rt x@0=rt x@1=tiny.rt x$r+jut;
    if x@3>x@2-eps: x@3:=x@2-eps; fi fi
  pair corner; ypart corner=y@1; corner=z@2+whatever*downward;
- filldraw z@2{z$-z$$}
-  ...darkness[corner,.5[z@1,z@2] ]{z@1-z@2}
-  ...{jut,0}z@1--z@0--(x$,y@0)--z@3--cycle; % the serif
+ filldraw z@2{z$-z$$}...{jut,0}z@1--z@0--(x$,y@0)--z@3--cycle; % the serif
  labels (@1,@2); enddef;
 
 def dish_serif(suffix $,$$,@)(expr left_darkness,left_jut)
@@ -64,7 +77,7 @@ def nodish_serif(suffix $,$$,@)(expr left_darkness,left_jut)
  serif($,$$,@@,right_darkness,right_jut) modifier; enddef;
 
 vardef sloped_serif.l(suffix $,$$,@)(expr darkness,jut,drop) =
- pickup crisp.nib; pos@2(slab,90);
+ pickup crisp.nib; pos@2(0.5slab,90);
  lft x@0=tiny.lft x$l; rt x@1=tiny.rt x$r; top y@1=tiny.top y$r;
  lft x@2=lft x@0-jut; y@2r=y@1-drop;
  y@0=y@2l-bracket-eps;
@@ -76,7 +89,7 @@ vardef sloped_serif.l(suffix $,$$,@)(expr darkness,jut,drop) =
  labels(@0,@1,@2); enddef;
 
 vardef sloped_serif.r(suffix $,$$,@)(expr darkness,jut,drop) =
- pickup crisp.nib; pos@2(slab,-90);
+ pickup crisp.nib; pos@2(0.5slab,-90);
  rt x@0=tiny.rt x$r; lft x@1=tiny.lft x$l; bot y@1=tiny.bot y$l;
  rt x@2=rt x@0+jut; y@2r=y@1+drop;
  y@0=y@2l+bracket+eps;
@@ -123,7 +136,7 @@ def pi_stroke = pickup fine.nib;
 def bulb(suffix $,$$,$$$) =
  z$$$r=z$$r;
  path_.l:=z$l{x$$r-x$r,0}...{0,y$$r-y$r}z$$l;
- filldraw path_.l--z$$r{0,y$r-y$$r}...{x$r-x$$r,0}z$r--cycle; % link
+ filldraw path_.l--z$$r{0,y$r-y$$r}...{x$r-x$$r,0}z$r..cycle; % link
  path_.r:=z$$$l{0,y$r-y$$r}..z$$$r{0,y$$r-y$r}; % near-circle
  filldraw subpath(0,xpart(path_.r intersectiontimes path_.l)) of path_.r
   --z$$r{0,y$$r-y$r}..cycle; % bulb
