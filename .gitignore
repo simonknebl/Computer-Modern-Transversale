@@ -15,6 +15,10 @@ METAFONT/lib/
 SPECIMEN/*
 SPECIMEN/
 
+### GLYPHS FILE ###
+GLYPHS/*
+GLYPHS/
+
 ### Workflow & Editor ###
 .idea
 .vscode
